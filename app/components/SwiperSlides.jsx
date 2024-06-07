@@ -18,6 +18,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 import { useState, useEffect } from "react";
+import { PulseLoader } from "react-spinners";
 
 const localImages = [
   "/dallake.webp",
@@ -52,6 +53,13 @@ export default function SwiperSlides() {
 
   return (
     <div className="text-white rounded-lg w-full h-full object-contain">
+      {/* Render a loading spinner while the first image is loading */}
+      {!isFirstImageLoaded && (
+        <div className="flex justify-center items-center w-full h-full">
+          <PulseLoader color="#ffffff" size={25} speedMultiplier={1} />
+        </div>
+      )}
+
       {/* Render the Swiper once the first image is loaded */}
       {isFirstImageLoaded && (
         <Swiper
