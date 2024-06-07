@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SwiperSlides from "./components/SwiperSlides";
 
 export default function Home() {
   return (
@@ -11,6 +12,9 @@ export default function Home() {
           <h1 className="text-2xl xl:text-3xl text-white">
             Breathtaking pictures from the Paradise on Earth
           </h1>
+          <div className="w-4/5">
+            <SwiperSlides />
+          </div>
           <h1 className="text-xl xl:text-3xl text-white">Coming soon!</h1>
         </main>
       </div>
