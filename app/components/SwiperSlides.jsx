@@ -45,6 +45,7 @@ export default function SwiperSlides() {
       {allImages.map((image, index) => (
         <SwiperSlide key={index} className="h-full w-full object-contain">
           <img
+            loading="lazy"
             src={image}
             alt={`Slide ${index + 1}`}
             className="w-full h-full object-contain"
