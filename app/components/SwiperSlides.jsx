@@ -37,7 +37,7 @@ export default function SwiperSlides() {
       spaceBetween={50}
       slidesPerView={1}
       navigation
-      autoplay={{ delay: 2000 }}
+      autoplay={{ delay: 2500 }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
       className="text-white rounded-lg w-full h-full object-contain"
