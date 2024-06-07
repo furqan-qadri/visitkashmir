@@ -17,6 +17,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
+import { useState, useEffect } from "react";
+
 const localImages = [
   "/dallake.webp",
   "/dallake2.webp",
@@ -28,30 +30,52 @@ const localImages = [
 const remoteImages = [];
 
 export default function SwiperSlides() {
+  const [isFirstImageLoaded, setIsFirstImageLoaded] = useState(false);
   const allImages = [...localImages, ...remoteImages];
 
+  const loadFirstImage = () => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = allImages[0];
+      img.onload = () => resolve(true);
+    });
+  };
+
+  useEffect(() => {
+    const loadImage = async () => {
+      await loadFirstImage();
+      setIsFirstImageLoaded(true);
+    };
+
+    loadImage();
+  }, []);
+
   return (
-    <Swiper
-      // install Swiper modules
-      modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-      spaceBetween={50}
-      slidesPerView={1}
-      navigation
-      autoplay={{ delay: 2500 }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
-      className="text-white rounded-lg w-full h-full object-contain"
-    >
-      {allImages.map((image, index) => (
-        <SwiperSlide key={index} className="h-full w-full object-contain">
-          <img
-            loading="lazy"
-            src={image}
-            alt={`Slide ${index + 1}`}
-            className="w-full h-full object-contain"
-          />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className="text-white rounded-lg w-full h-full object-contain">
+      {/* Render the Swiper once the first image is loaded */}
+      {isFirstImageLoaded && (
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+          spaceBetween={50}
+          slidesPerView={1}
+          navigation
+          autoplay={{ delay: 2500 }}
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log("slide change")}
+          className="w-full h-full object-contain"
+        >
+          {allImages.map((image, index) => (
+            <SwiperSlide key={index} className="h-full w-full object-contain">
+              <img
+                loading="lazy"
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className="w-full h-full object-contain"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
+    </div>
   );
 }
