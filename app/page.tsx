@@ -18,7 +18,7 @@ export default function Home() {
           <div className="w-4/5 text-white overflow-hidden">
             <SwiperSlides />
           </div>
-          <h1 className="text-xl xl:text-3xl text-white">Coming soon!</h1>
+          <h1 className="text-sm text-white"> © Furqan Qadri </h1>
         </main>
       </div>
     </>
