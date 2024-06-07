@@ -30,7 +30,7 @@ const images = [
   "https://source.unsplash.com/collection/1353633/1600x909", // Image 10
 ];
 
-export default () => {
+export default function SwiperSlides() {
   return (
     <Swiper
       // install Swiper modules
@@ -41,17 +41,17 @@ export default () => {
       autoplay={{ delay: 2000 }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
-      className="text-white rounded-lg"
+      className="text-white rounded-lg w-full h-full object-contain"
     >
       {images.map((image, index) => (
-        <SwiperSlide key={index}>
+        <SwiperSlide key={index} className="h-full w-full object-contain">
           <img
             src={image}
             alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
         </SwiperSlide>
       ))}
     </Swiper>
   );
-};
+}
